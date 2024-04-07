@@ -24,8 +24,9 @@ export class AppComponent implements OnInit{
   newUsuario?: IUsers;
   private _serviceUsuario = inject(UsuarioService)
   ngOnInit(): void {
-    this.newUsuario = this._serviceUsuario.getUsario()
-    console.log("esto es una prueba")
+    this._serviceUsuario.newUsuario.subscribe(
+      data =>{ this.newUsuario = data; }
+    )
   } 
    public setUsuario(usuario: IUsers){
     this.newUsuario =usuario

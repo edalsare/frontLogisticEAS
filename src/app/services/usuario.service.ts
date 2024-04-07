@@ -1,12 +1,12 @@
-import { Injectable, inject } from '@angular/core';
+import { EventEmitter, Injectable, Output, inject} from '@angular/core';
 import { IUsers } from '../models/users.model';
-import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
+  @Output() newUsuario: EventEmitter<IUsers> = new EventEmitter();
   private usuario?: IUsers;
   //_iusario = inject(AppComponent)
   constructor() { }

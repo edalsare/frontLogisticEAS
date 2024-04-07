@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioService } from '../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent {
 
   private _serviceUsuario = inject(UsuarioService)
 
+  private _router = inject(Router)
   constructor(private form: FormBuilder, private _apiService: ApiService) {
     this.fromularioLogin = this.form.group({
       usuario: ['', Validators.required],
@@ -52,7 +54,8 @@ export class LoginComponent {
         this.mensaje = " "
         //this.newUsuario = data;
         this._serviceUsuario.setUsuario(data);
-        console.log(this._serviceUsuario.getUsario());
+        this._serviceUsuario.newUsuario.emit(data);
+        this._router.navigate(['menu']);
         }
       
     })
