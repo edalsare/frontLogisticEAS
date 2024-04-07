@@ -1,6 +1,8 @@
-html, body { 
-	height: 100%; 
-	font-family: 'Ubuntu', sans-serif; 
+.d-flex{ 
+	font-family: 'Ubuntu', sans-serif;
+	min-width: 20px;
+	max-width: 240px;
+	height: 100%;
 } 
 
 .gfg { 
@@ -9,6 +11,10 @@ html, body {
 
 } 
 
+.nav-item{
+	border-top: solid rgb(246, 241, 241) 1px;
+}
+
 .mynav { 
 	color: #fff; 
 } 
@@ -16,7 +22,7 @@ html, body {
 .mynav li a { 
 	color: #fff; 
 	text-decoration: none; 
-	width: 100%; 
+	width: auto; 
 	display: block; 
 	border-radius: 5px; 
 	padding: 8px 5px; 
@@ -33,6 +39,8 @@ html, body {
 .mynav li a i { 
 	width: 25px; 
 	text-align: center; 
+	
 } 
+
 
 

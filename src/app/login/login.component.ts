@@ -34,6 +34,7 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
+  
   enviar() {
     this.usuario = this.fromularioLogin.get('usuario')?.value;
     this.password = this.fromularioLogin.get('password')?.value;

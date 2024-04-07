@@ -1,7 +1,6 @@
-<body> 
-
-	<div class="container-fluid p-0 d-flex h-100"> 
-		<div id="bdSidebar"
+<div class="d-flex">
+	
+		<div  id="bdSidebar"
 			class="d-flex flex-column 
 					flex-shrink-0 
 					p-3 bg-secondary 
@@ -11,35 +10,34 @@
 			</a><hr> 
 			<ul class="mynav nav nav-pills flex-column mb-auto"> 
 				<li class="nav-item mb-1"> 
-					<a href="#"> 
+					<a [routerLink]="['/usuario']"> 
 						<i class="fa-regular fa-user"></i> 
-						Profile 
+						Agregar usuario 
 					</a> 
 				</li> 
 
 				<li class="nav-item mb-1"> 
-					<a href="#"> 
+					<a  > 
 						<i class="bi bi-person-vcard-fill"></i>
-						Saved Articles 
-						<span class="notification-badge">5</span> 
+						Registrar categoria 
 					</a> 
 				</li> 
 				<li class="nav-item mb-1"> 
 					<a href="#"> 
 						<i class="fa-regular fa-newspaper"></i> 
-						Articles 
+						Registrar muelles
 					</a> 
 				</li> 
 				<li class="nav-item mb-1"> 
 					<a href="#"> 
 						<i class="fa-solid fa-archway"></i> 
-						Institutions 
+						Crear posiciones 
 					</a> 
 				</li> 
 				<li class="nav-item mb-1"> 
 					<a href="#"> 
 						<i class="fa-solid fa-graduation-cap"></i> 
-						Organizations 
+						Registrar productos 
 					</a> 
 				</li> 
 
@@ -58,6 +56,5 @@
 			</div>
 
 		</div> 
-	</div> 
-</body> 
+	</div>
 
