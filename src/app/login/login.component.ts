@@ -38,22 +38,18 @@ export class LoginComponent {
   enviar() {
     this.usuario = this.fromularioLogin.get('usuario')?.value;
     this.password = this.fromularioLogin.get('password')?.value;
-    
+    console.log(this.fromularioLogin.get('password')?.value)
 
     this._apiService.getUsuario(this.usuario).subscribe((data: IUsers) =>{
-       //console.log(data);
       if(data == null){
         this.prueba = true;
         this.mensaje = "Error, Usuario incorrecto"
-        console.log("Usuario incorrecto");
       }else if(data.password != this.password){
         this.prueba = true;
         this.mensaje = "Error, Contraseña incorrecta"
-        console.log("contraseña incorrecto");
       }else{
         this.prueba = false;
         this.mensaje = " "
-        //this.newUsuario = data;
         this._serviceUsuario.setUsuario(data);
         this._serviceUsuario.newUsuario.emit(data);
         this._router.navigate(['menu']);

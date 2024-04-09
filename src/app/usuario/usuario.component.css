@@ -12,3 +12,6 @@
 .col-12{
     text-align: center;
 }
+.form-control{
+    border: solid rgb(29, 35, 99) 1px;
+}
