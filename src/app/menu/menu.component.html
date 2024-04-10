@@ -1,60 +1,62 @@
 <div class="d-flex">
-	
-		<div  id="bdSidebar"
-			class="d-flex flex-column 
-					flex-shrink-0 
-					p-3 bg-secondary 
-					text-white offcanvas-md offcanvas-start"> 
-			<a href="#"
-			class="navbar-brand"> 
-			</a><hr> 
-			<ul class="mynav nav nav-pills flex-column mb-auto"> 
-				<li class="nav-item mb-1"> 
-					<a [routerLink]="['/usuario']"> 
-						<i class="fa-regular fa-user"></i> 
-						Agregar usuario 
-					</a> 
-				</li> 
+  <div
+    id="bdSidebar"
+    class="d-flex flex-column flex-shrink-0 p-3 bg-secondary text-white offcanvas-md offcanvas-start"
+  >
+    <a href="#" class="navbar-brand"> </a>
+    <hr />
+    <ul class="mynav nav nav-pills flex-column mb-auto">
+      <li class="nav-item mb-1">
+        <a [routerLink]="['/usuario']">
+          <i class="fa-regular fa-user"></i>
+          Agregar usuario
+        </a>
+      </li>
 
-				<li class="nav-item mb-1"> 
-					<a  > 
-						<i class="bi bi-person-vcard-fill"></i>
-						Registrar categoria 
-					</a> 
-				</li> 
-				<li class="nav-item mb-1"> 
-					<a href="#"> 
-						<i class="fa-regular fa-newspaper"></i> 
-						Registrar muelles
-					</a> 
-				</li> 
-				<li class="nav-item mb-1"> 
-					<a href="#"> 
-						<i class="fa-solid fa-archway"></i> 
-						Crear posiciones 
-					</a> 
-				</li> 
-				<li class="nav-item mb-1"> 
-					<a href="#"> 
-						<i class="fa-solid fa-graduation-cap"></i> 
-						Registrar productos 
-					</a> 
-				</li> 
-
-				
-			</ul> 
-			<hr>  
-		</div> 
-
-		<div class="bg-light flex-fill"> 
-			<div class="p-2 d-md-none d-flex text-white bg-secondary"> 
-				<a href="#" class="text-white"
-				data-bs-toggle="offcanvas"
-				data-bs-target="#bdSidebar"> 
-					<i class="fa-solid fa-bars"></i> 
-				</a> 
-			</div>
-
-		</div> 
+      <li class="nav-item mb-1">
+        <a>
+          <i class="bi bi-person-vcard-fill"></i>
+          Registrar categoria
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#">
+          <i class="fa-regular fa-newspaper"></i>
+          Registrar muelles
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#">
+          <i class="fa-solid fa-archway"></i>
+          Crear posiciones
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#">
+          <i class="fa-solid fa-graduation-cap"></i>
+          Registrar productos
+        </a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+  <div class="bg-light flex-fill">
+    <div class="p-2 d-md-none d-flex text-white bg-secondary">
+      <a
+        href="#"
+        class="text-white"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#bdSidebar"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </a>
+    </div>
+  </div>
+	<div class="position-absolute top-50 start-50 translate-middle">
+		<div class="bor" [hidden]="ban">
+			<label for=""><h2>{{mensaje }}</h2></label>
+			<i class="fa-solid fa-circle-check fa-2xl" style="color: #63E6BE;"></i>
+			<button class="btn btn-outline-success btn-lg" (click)='hiden()'>Aceptar</button>
+		</div>
 	</div>
-
+</div>

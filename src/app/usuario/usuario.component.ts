@@ -8,6 +8,7 @@ import { People } from '../models/people.model';
 import { UsuarioService } from '../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-usuario',
@@ -26,6 +27,8 @@ export class UsuarioComponent {
   mensaje: string='';
   prueba: boolean = false;
   private _router = inject(Router)
+  private _apiservis = inject(ApiService)
+
 
   constructor(private form: FormBuilder) {
     this.formUsuario = this.form.group({
@@ -58,7 +61,10 @@ export class UsuarioComponent {
     if(this.formUsuario.valid){
       if(this.user.password === this.formUsuario.get('repPassword')?.value){
         this.prueba = false;
-        this._UserServ.PostPeople(this.user, this.people).subscribe();
+        this._UserServ.PostPeople(this.user, this.people).subscribe(data =>{
+          console.log('ssssssssssssssssss'+data)
+        });
+        this._apiservis.setVar("Usuario registrado correctamente", false)
            // Manejar la respuesta del servidor aquí
         this._router.navigate(['menu']);
       }else{
