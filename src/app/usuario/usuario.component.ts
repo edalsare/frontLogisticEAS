@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { IUsers } from '../models/users.model';
 import { People } from '../models/people.model';
 import { UsuarioService } from '../services/usuario.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
@@ -25,6 +25,7 @@ export class UsuarioComponent {
   private people: People = {} as People;
   private _UserServ = inject(UsuarioService);
   mensaje: string='';
+  mensajes: string='';
   prueba: boolean = false;
   private _router = inject(Router)
   private _apiservis = inject(ApiService)
@@ -56,17 +57,25 @@ export class UsuarioComponent {
     this.user.post =this.formUsuario.get('post')?.value;
     this.user.password =this.formUsuario.get('password')?.value;
 
-    console.log(this.formUsuario.get('post')?.value)
 
     if(this.formUsuario.valid){
       if(this.user.password === this.formUsuario.get('repPassword')?.value){
         this.prueba = false;
-        this._UserServ.PostPeople(this.user, this.people).subscribe(data =>{
-          console.log('ssssssssssssssssss'+data)
-        });
-        this._apiservis.setVar("Usuario registrado correctamente", false)
-           // Manejar la respuesta del servidor aquí
-        this._router.navigate(['menu']);
+        this._UserServ.PostPeople(this.user, this.people).subscribe({
+          next: data => {
+            this._router.navigate(['menu']); 
+            this._apiservis.setVar('Usuario ingresado correctamente', false)                      
+          },
+          error: err => {
+            console.log(err)
+            this.prueba = true;
+            this.mensaje = 'Cedula usuario ya esta registrada';
+            
+          }
+      });
+          
+           
+        
       }else{
         this.prueba = true;
         this.mensaje = 'Contraseñas no coinciden';

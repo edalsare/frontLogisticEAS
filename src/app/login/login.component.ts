@@ -38,7 +38,6 @@ export class LoginComponent {
   enviar() {
     this.usuario = this.fromularioLogin.get('usuario')?.value;
     this.password = this.fromularioLogin.get('password')?.value;
-    console.log(this.fromularioLogin.get('password')?.value)
 
     this._apiService.getUsuario(this.usuario).subscribe((data: IUsers) =>{
       if(data == null){

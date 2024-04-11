@@ -30,7 +30,6 @@ export class MenuComponent implements OnInit{
 
     this.mensaje = this._apiServ.getMensaje();
     this.ban = this._apiServ.getBan();
-    console.log(this.mensaje);
    
   }
 

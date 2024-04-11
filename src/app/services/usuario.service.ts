@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output, inject } from '@angular/core';
 import { IUsers } from '../models/users.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { People } from '../models/people.model';
 
@@ -15,9 +15,9 @@ export class UsuarioService {
   private usuario?: IUsers;
   constructor() {}
 
-  public PostPeople(user: IUsers, people: People): Observable<any> {
-    const objPeople = { people: people, users: user };
-    return this._HTTPClient.post(`${this.baseUrl}save_people`, objPeople);
+  public PostPeople(users: IUsers, people: People): Observable<HttpResponse<string>> {
+    const objPeople = { people: people, users: users };
+    return this._HTTPClient.post(`${this.baseUrl}save_people`, objPeople, { observe: 'response', responseType: 'text' });
   }
 
   public setUsuario(usuario: IUsers) {
