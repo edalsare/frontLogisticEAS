@@ -19,6 +19,8 @@ export class IncatMuelleComponent {
 
   mensaje: string = "";
   formUsuario: FormGroup;
+  ban: boolean = false;
+  banOk: boolean= true;
 
   constructor(private form: FormBuilder) {
     this.formUsuario = this.form.group({
@@ -40,6 +42,15 @@ export class IncatMuelleComponent {
       this.formUsuario.get(controlName)?.hasError(errorType) &&
       this.formUsuario.get(controlName)?.touched
     );
+  }
+
+  manejarMensaje(mensaje: string){
+    this.mensaje = mensaje;
+  }
+
+  manejarBan(ban: boolean){
+    this.ban = ban;
+    this.banOk = ban;
   }
 
 }
