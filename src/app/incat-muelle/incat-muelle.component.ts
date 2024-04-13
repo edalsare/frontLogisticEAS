@@ -4,6 +4,8 @@ import { MenuComponent } from '../menu/menu.component';
 import { CommonModule } from '@angular/common';
 import { MuelleComponent } from '../ubicacion/muelle/muelle.component';
 import { CategoriaComponent } from '../productos/categoria/categoria.component';
+import { AlertOkComponent } from '../alerts/alert-ok/alert-ok.component';
+import { AlertFailComponent } from '../alerts/alert-fail/alert-fail.component';
 
 @Component({
   selector: 'app-incat-muelle',
@@ -11,7 +13,9 @@ import { CategoriaComponent } from '../productos/categoria/categoria.component';
   imports: [MenuComponent, 
   ReactiveFormsModule,
   CommonModule,MuelleComponent,
-  CategoriaComponent],
+  CategoriaComponent,
+  AlertOkComponent,
+  AlertFailComponent],
   templateUrl: './incat-muelle.component.html',
   styleUrl: './incat-muelle.component.css'
 })

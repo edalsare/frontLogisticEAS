@@ -1,17 +1,21 @@
 
-<div >
-    <h2>Datos personales</h2>
-    <label for="id_people" class="form-label">No. Cedula</label>
+<div class="container">  
+  <h2>Datos Muelles</h2>
+  <form [formGroup]="formMuelle" (ngSubmit)="enviar()" class="d-flex row g-3">
+    <div class="col-md-12">
+      <label for="muelle" class="form-label">Nombre Muelle</label>
     <input
-      type="number"
+      type="text"
       class="form-control"
-      id="id_people"
-      formControlName="id_people"
+      id="muelle"
+      formControlName="muelle" 
     />
-    <button
-      type="submit"
-      class="btn btn-outline-success btn-lg"
-    >
-      Registrar
-    </button>
+    </div>
+    <div align="end"> 
+      <button type="submit" class="btn btn-sm btn-outline-secondary " [disabled]="formMuelle.invalid">
+        Ingresar
+      </button>
+    </div> 
+  </form>
+    
   </div>

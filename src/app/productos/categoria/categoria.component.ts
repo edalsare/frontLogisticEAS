@@ -17,7 +17,6 @@ export class CategoriaComponent {
 
   formCategoria: FormGroup;
   private category: ICategory = {} as ICategory;
-  private readCategory: ICategory = {} as ICategory;
   private _apiCategoria = inject(CategoriaService);
   
 
@@ -38,16 +37,16 @@ export class CategoriaComponent {
     this._apiCategoria.getNameAndSubName(
       this.category.namecat, this.category.subnamecat).subscribe({
         next: data =>{
-          this.readCategory = data;
           if(data){
-            this.mensaje.emit("Convinacion categoria y SubCategoria ya se enceuntra registrado");
+            this.mensaje.emit("Combinación categoría y Subcategoría ya se encuentra registrado");
             this.ban.emit(true);
             
           }else{
+            
               this._apiCategoria.postCategoria(this.category).subscribe({
               next: data =>{
                 console.log(data.body)
-                this.mensaje.emit("Ctagoria: "+this.category.namecat+" y Subcategoria: "+this.category.subnamecat+" ingresado correctamente");
+                this.mensaje.emit("Categoría: "+this.category.namecat+" y Subcategoría: "+this.category.subnamecat+" ingresado correctamente");
                 this.ban.emit(false);
                 this.formCategoria.reset();
               },
