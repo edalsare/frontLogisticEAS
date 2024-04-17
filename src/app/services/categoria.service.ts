@@ -20,4 +20,12 @@ export class CategoriaService {
   public getNameAndSubName(name: string, subnamecat: string): Observable<ICategory>{
     return this._HTTPClient.get<ICategory>(`${this.BASE_URL}readname?name=${name}&subname=${subnamecat}`)
   }
+
+  public getAllCategorias(): Observable<string[]>{
+    return this._HTTPClient.get<string[]>(`${this.BASE_URL}readAll`)
+  }
+
+  public getBynamecat(namecat: string): Observable<ICategory[]>{
+    return this._HTTPClient.get<ICategory[]>(`${this.BASE_URL}readNamecat?namecat=${namecat}`)
+  }
 }

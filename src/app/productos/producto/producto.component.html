@@ -1,0 +1,87 @@
+<div class="d-flex ">
+    <app-menu />
+    <form [formGroup]="formProducto" (ngSubmit)="enviar()" class="container d-flex row g-3">
+        <div class="col-12">
+            <h1>Ingreso de nuevos Productos</h1>
+        </div>
+        <div class="row gx-5 ">
+          <div class="col-sm">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" id="ean" formControlName="ean">
+              <label for="ean">EAN</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="nombre_pro" formControlName="nombre_pro">
+              <label for="nombre_pro">Nombre</label>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="proveedor" formControlName="proveedor">
+              <label for="proveedor">Proveedor</label>
+            </div>
+          </div>
+      </div>
+      <div class="row gx-5 ">
+        <div class="col-sm-3">
+          <div class="form-floating mb-3">
+            <select class="form-select form-control" id="categoría" aria-label="Floating label select example" 
+            formControlName="categoría" (change)="onSelect()">
+              <option *ngFor="let categoria of cat" [value]="categoria" >{{categoria}}</option>
+            </select>
+            <label for="categoría">Categoría</label>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-floating mb-3">
+            <select class="form-select" id="subcategoria" aria-label="Floating label select example" formControlName="subcategoria">
+              <option *ngFor="let subcat of categoria" [value]="subcat.subnamecat">{{subcat.subnamecat}}</option>
+            </select>
+            <label for="subcategoria">Subcategoria</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" id="descripcion" formControlName="descripcion"></textarea>
+          <label for="descripcion">Descripción</label>
+          </div>
+        </div>
+    </div>
+    <div class="row gx-5 flex-row-reverse">
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-secondary" [disabled]="formProducto.invalid" [autofocus]="formProducto.valid">Aceptar</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-success" [disabled]="tableproductos.length === 0" (click)="registrar()">Registrar</button>
+      </div>
+  </div>
+        <div class="col-11">
+          <table class="table table-secondary table-hover table-bordered border-secondary">
+            <thead>
+              <tr>
+                <th scope="col">EAN</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Proveedor</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Subcategoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of tableproductos">
+                <td >{{product.id_product}}</td>
+                <td >{{product.name_product}}</td>
+                <td >{{product.description_pro}}</td>
+                <td >{{product.suplier}}</td>
+                <td >{{product.category.namecat}}</td>
+                <td >{{product.category.subnamecat}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </form>
+    </div>
