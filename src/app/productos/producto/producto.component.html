@@ -54,13 +54,17 @@
         <button type="submit" class="btn btn-secondary" [disabled]="formProducto.invalid" [autofocus]="formProducto.valid">Aceptar</button>
       </div>
       <div class="col-sm-2">
-        <button type="button" class="btn btn-success" [disabled]="tableproductos.length === 0" (click)="registrar()">Registrar</button>
+        <button type="button" class="btn btn-success" [disabled]="product.length === 0" (click)="registrar()">Registrar</button>
       </div>
   </div>
-        <div class="col-11">
-          <table class="table table-secondary table-hover table-bordered border-secondary">
+  <div class="col-md-8">
+    <app-alert-fail [mensaje]="mensaje" *ngIf="banFail"/>
+  </div>
+    <div class="col-11">
+          <table class="table table-hover table-bordered border-secondary">
             <thead>
               <tr>
+                <th scope="col">#</th>
                 <th scope="col">EAN</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
@@ -70,13 +74,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let product of tableproductos">
+              <tr *ngFor="let product of product; index as i">
+                <td >{{i+1}}</td>
                 <td >{{product.id_product}}</td>
                 <td >{{product.name_product}}</td>
                 <td >{{product.description_pro}}</td>
                 <td >{{product.suplier}}</td>
                 <td >{{product.category.namecat}}</td>
                 <td >{{product.category.subnamecat}}</td>
+                <td >
+                  <button type="button" class="btn btn-danger"
+                  style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .1rem; --bs-btn-font-size: .90rem;"
+                  (click)="deleteProduct(i)">
+                  <i class="bi bi-trash3"></i>
+                  </button>
+                  </td>
                 
               </tr>
             </tbody>

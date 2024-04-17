@@ -8,6 +8,9 @@ import {MatTableModule} from '@angular/material/table';
 import { IProducto } from '../../models/producto';
 import { ICategory } from '../../models/categoria';
 import { CategoriaService } from '../../services/categoria.service';
+import { ProductoService } from '../../services/producto.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { IUsers } from '../../models/users.model';
 
 @Component({
   selector: 'app-producto',
@@ -31,11 +34,13 @@ export class ProductoComponent implements OnInit{
   formProducto: FormGroup;
   cat?: string[];
   categoria?: ICategory[];
-  producto: IProducto= {} as IProducto;
-  tableproductos: IProducto[] = [];
+  product: IProducto[] = [];
   categoriat: ICategory = {} as ICategory;
-  categoriaTable: ICategory = {} as ICategory;
+  usuario: IUsers ={} as IUsers;
+  idUser: number = 0;
   private _sercCategoria = inject(CategoriaService);
+  private _productoService = inject(ProductoService);
+  private _usuarioService = inject(UsuarioService);
   
   productos: IProducto[] = [];
 
@@ -69,20 +74,64 @@ export class ProductoComponent implements OnInit{
   }
 
   enviar(){
-    this.producto.id_product = this.formProducto.get('ean')?.value ;
-    this.producto.name_product = this.formProducto.get('nombre_pro')?.value ;
-    this.producto.suplier = this.formProducto.get('proveedor')?.value ;
-    this.producto.description_pro = this.formProducto.get('descripcion')?.value ;
-    this.categoriaTable.namecat = this.formProducto.get('categoría')?.value ;
-    this.categoriaTable.subnamecat = this.formProducto.get('subcategoria')?.value ;
-    this.producto.category = this.categoriaTable;
+    
+    const producto: IProducto= {} as IProducto;
+    
+  const category: ICategory = {} as ICategory;
+    producto.id_product = this.formProducto.get('ean')?.value ;
+    producto.name_product = this.formProducto.get('nombre_pro')?.value ;
+    producto.suplier = this.formProducto.get('proveedor')?.value ;
+    producto.description_pro = this.formProducto.get('descripcion')?.value ;
+    category.namecat = this.formProducto.get('categoría')?.value ;
+    category.subnamecat = this.formProducto.get('subcategoria')?.value ;
+    producto.category = category;
 
-    this.tableproductos.push(this.producto);
-    this.formProducto.reset();
+    this._productoService.getProductExist(this.formProducto.get('ean')?.value).subscribe({
+      next: data =>{
+        if(data == true){
+          this.banFail = true;
+          this.mensaje = "Este producto ya se encuentra Registrado, prueba otro EAN"
+        }else{
+          this.banFail = false;
+          this.mensaje = ""
+          for(let pro of this.product){
+            if(pro.id_product == producto.id_product){
+               this.banFail = true;
+               this.mensaje = "Este producto ya se encuentra en la lista a registrar"
+            }
+          }
+
+          if(this.banFail == false){
+            this.product.push(producto);
+            this.formProducto.reset();
+          }
+          
+        }
+      },
+      error: err =>{
+        console.error(err);
+      }
+    })
+
+    
   }
 
   registrar(){
-    console.log("Aqui va codigo para registrar producto");
+    
+    this.usuario = this._usuarioService.getUsario();
+    this.idUser = this.usuario.id_users;
+    this._productoService.postProducto(this.idUser, this.product).subscribe({
+      next: (data) =>{
+        console.log(data.body);
+        this.product = [];
+      }, error: (err) =>{
+        console.error(err);
+      }
+    })
+  }
+
+  deleteProduct(index: number) {
+    this.product.splice(index, 1);
   }
 
 }

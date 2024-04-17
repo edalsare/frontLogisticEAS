@@ -12,7 +12,7 @@ export class UsuarioService {
   _HTTPClient = inject(HttpClient);
 
   @Output() newUsuario: EventEmitter<IUsers> = new EventEmitter();
-  private usuario?: IUsers;
+  private usuario: IUsers = {} as IUsers;
   constructor() {}
 
   public PostPeople(users: IUsers, people: People): Observable<HttpResponse<string>> {
