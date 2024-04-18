@@ -1,0 +1,6 @@
+.row{
+    border-bottom: 1px solid black;
+    border-radius: 5px;
+    background: rgb(98, 105, 130); 
+    color: aliceblue;
+}

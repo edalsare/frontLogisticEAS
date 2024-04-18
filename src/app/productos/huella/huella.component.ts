@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuComponent } from '../../menu/menu.component';
 import { HuellaService } from '../../services/huella.service';
-import { IHuellaProducto } from '../../models/huella';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PackageComponent } from './package/package.component';
+import { ProporcionesComponent } from './proporciones/proporciones.component';
 
 @Component({
   selector: 'app-huella',
@@ -13,7 +14,9 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
       CommonModule,
       MenuComponent,
       PaginationModule,
-      FormsModule
+      FormsModule, 
+      PackageComponent, 
+      ProporcionesComponent
   ],
   templateUrl: './huella.component.html',
   styleUrl: './huella.component.css'
@@ -23,7 +26,6 @@ export class HuellaComponent implements OnInit {
   formHuella: FormGroup;
   producto: any[] = [];
   pagedData:any[] = [];
-  iproduct: IHuellaProducto = {} as IHuellaProducto;
   _TraceService = inject(HuellaService);
 
   itemsPerPage = 10;
@@ -33,7 +35,7 @@ export class HuellaComponent implements OnInit {
 
   constructor(private form: FormBuilder){
     this.formHuella = this.form.group({
-
+      nivel: ['', Validators.required]
 
     })
   }
