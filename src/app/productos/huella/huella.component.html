@@ -1,1 +1,41 @@
-<p>huella works!</p>
+<div class="d-flex ">
+    <app-menu />
+    <form [formGroup]="formHuella" (ngSubmit)="enviar()" class="container d-flex row g-3">
+        <div class="col-12">
+            <h1>Creacion de huellas para los productos</h1>
+        </div>
+        <div class="col-11"><h2>Productos sin Huella</h2></div>
+        <div class="col-11">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">EAN</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Proveedor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of pagedData; index as i">
+                        <th>{{i+1}}</th>
+                        <td >{{item[0]}}</td>
+                        <td >{{item[1]}}</td>
+                        <td >{{item[2]}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success"
+                            style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .1rem; --bs-btn-font-size: .90rem;">
+                             <i class="bi bi-plus-circle"></i>
+                            </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <pagination [totalItems]="totalItems" (ngModel)="currentPage" 
+                    [maxSize]="3" class="pagination justify-content-end" 
+                    previousText="&lsaquo;" nextText="&rsaquo;"
+                    (boundaryLinks)="true" (pageChanged)="pageChanged($event)">
+                  </pagination>
+        </div>
+      </form>
+    </div>
+

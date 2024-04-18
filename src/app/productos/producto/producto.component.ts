@@ -78,10 +78,10 @@ export class ProductoComponent implements OnInit{
     const producto: IProducto= {} as IProducto;
     
   const category: ICategory = {} as ICategory;
-    producto.id_product = this.formProducto.get('ean')?.value ;
-    producto.name_product = this.formProducto.get('nombre_pro')?.value ;
+    producto.idproduct = this.formProducto.get('ean')?.value ;
+    producto.nameproduct = this.formProducto.get('nombre_pro')?.value ;
     producto.suplier = this.formProducto.get('proveedor')?.value ;
-    producto.description_pro = this.formProducto.get('descripcion')?.value ;
+    producto.descriptionpro = this.formProducto.get('descripcion')?.value ;
     category.namecat = this.formProducto.get('categoría')?.value ;
     category.subnamecat = this.formProducto.get('subcategoria')?.value ;
     producto.category = category;
@@ -95,7 +95,7 @@ export class ProductoComponent implements OnInit{
           this.banFail = false;
           this.mensaje = ""
           for(let pro of this.product){
-            if(pro.id_product == producto.id_product){
+            if(pro.idproduct == producto.idproduct){
                this.banFail = true;
                this.mensaje = "Este producto ya se encuentra en la lista a registrar"
             }

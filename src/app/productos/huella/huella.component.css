@@ -1,0 +1,18 @@
+.container{
+    margin: 10px;
+    justify-content: center;
+}
+
+.col-md-5{
+        
+    padding: 15px;
+    margin: 10px;
+}
+
+.col-12{
+    text-align: center;
+}
+
+h1{
+    font-weight: bold;
+}
