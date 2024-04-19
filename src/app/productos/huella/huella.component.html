@@ -5,17 +5,20 @@
             <h1>Creacion de huellas para los productos</h1>
             
         </div>
-        <div class="collapse row g-1" id="collapseExample">         
+        <div class="collapse show row g-1" id="collapseExample">         
         <div class="row gx-5 m-3">
           <div class="col-sm-3 p-0">
             <div class=" form-floating">
-              <input type="number" class="form-control" id="nivel" formControlName="nivel">
-              <label for="nivel">Nivel de Huella</label>
+              <select class="form-select" id="nivel" aria-label="Floating label select example" 
+              formControlName="nivel" (change)="onSelect()">
+                <option *ngFor="let item of huella" [value]="item">{{item}}</option>
+              </select>
+              <label for="nivel">Nivel de huella</label>
             </div>
           </div>
       </div>
       <div class="row gx-5 m-3">
-        <app-package/> 
+        <app-package [huella]="nivel"/> 
       </div>
       <div class="row gx-5 m-3">
         <app-proporciones/> 

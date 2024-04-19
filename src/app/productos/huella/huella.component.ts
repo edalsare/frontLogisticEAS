@@ -27,6 +27,9 @@ export class HuellaComponent implements OnInit {
   producto: any[] = [];
   pagedData:any[] = [];
   _TraceService = inject(HuellaService);
+  nivel: string = '';
+
+  huella: string[] =["Nivel1","Nivel2","Nivel3","Nivel4","Nivel5"]
 
   itemsPerPage = 10;
   currentPage = 1;
@@ -39,6 +42,7 @@ export class HuellaComponent implements OnInit {
 
     })
   }
+
   ngOnInit(): void {
     this._TraceService.readProductByTrace().subscribe({
       next: data =>{
@@ -49,6 +53,7 @@ export class HuellaComponent implements OnInit {
     })
   }
 
+  //Manje pafinacion tabla
   pageChanged(event: any = null): void {
     if (event) {
       this.currentPage = event.page;
@@ -56,6 +61,11 @@ export class HuellaComponent implements OnInit {
     const startItem = (this.currentPage - 1) * this.itemsPerPage;
     const endItem = this.currentPage * this.itemsPerPage;
     this.pagedData = this.producto.slice(startItem, endItem);
+  }
+
+  //mneja evento chance del select huella
+  onSelect(){
+    this.nivel = this.formHuella.get('nivel')?.value;
   }
 
   enviar(){

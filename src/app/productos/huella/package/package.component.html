@@ -1,9 +1,9 @@
  
-      <div class="row gx-5">
+      <form [formGroup]="formPackage" class="row gx-5">
         <h3>Unidades de empaque</h3>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="unidad" formControlName="unidad">
+            <input type="number" class="form-control" id="unidad" formControlName="unidad" >
             <label for="unidad">Unidad</label>
           </div>
         </div>
@@ -31,4 +31,4 @@
             <label for="pieza">Numero de piezas</label>
           </div>
         </div>
-    </div>
+      </form>
