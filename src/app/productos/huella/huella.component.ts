@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject} from '@angular/core';
+import { Component, OnInit, Output, inject} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuComponent } from '../../menu/menu.component';
 import { HuellaService } from '../../services/huella.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PackageComponent } from './package/package.component';
 import { ProporcionesComponent } from './proporciones/proporciones.component';
+import { IPackage } from '../../models/package';
+import { IProporcion } from '../../models/proporcion';
 
 @Component({
   selector: 'app-huella',
@@ -28,6 +30,11 @@ export class HuellaComponent implements OnInit {
   pagedData:any[] = [];
   _TraceService = inject(HuellaService);
   nivel: string = '';
+  package: IPackage = {} as IPackage;
+  proporcion: IProporcion = {} as IProporcion;
+  collapse: string = '';
+  ban: boolean = true;
+  ban2: boolean = true;
 
   huella: string[] =["Nivel1","Nivel2","Nivel3","Nivel4","Nivel5"]
 
@@ -53,7 +60,7 @@ export class HuellaComponent implements OnInit {
     })
   }
 
-  //Manje pafinacion tabla
+  //Manje paginacion tabla
   pageChanged(event: any = null): void {
     if (event) {
       this.currentPage = event.page;
@@ -63,13 +70,37 @@ export class HuellaComponent implements OnInit {
     this.pagedData = this.producto.slice(startItem, endItem);
   }
 
-  //mneja evento chance del select huella
+  //maneja evento change del select huella
   onSelect(){
     this.nivel = this.formHuella.get('nivel')?.value;
   }
 
-  enviar(){
+ 
 
+  enviar(){
+    console.log(this.package)
+    console.log(this.proporcion)
+
+  }
+
+  manejarPackage(packages: IPackage){
+    this.package = packages;
+    if(
+      Object.keys(this.package).length === 0){
+        this.ban = true;
+    }else{
+      this.ban = false;
+    }
+  }
+
+  manejarPorporcion(proporcion: IProporcion){
+    this.proporcion = proporcion;
+    if(
+      Object.keys(this.proporcion).length === 0){
+        this.ban2 = true;
+    }else{
+      this.ban2 = false;
+    }
   }
 
 }

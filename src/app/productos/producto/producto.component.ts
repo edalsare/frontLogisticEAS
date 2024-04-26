@@ -29,7 +29,7 @@ import { IUsers } from '../../models/users.model';
 export class ProductoComponent implements OnInit{
 
   mensaje: string = ""
-  banOk: boolean = true;
+  //banOk: boolean = true;
   banFail: boolean = false;
   formProducto: FormGroup;
   cat?: string[];
@@ -77,7 +77,7 @@ export class ProductoComponent implements OnInit{
     
     const producto: IProducto= {} as IProducto;
     
-  const category: ICategory = {} as ICategory;
+    const category: ICategory = {} as ICategory;
     producto.idproduct = this.formProducto.get('ean')?.value ;
     producto.nameproduct = this.formProducto.get('nombre_pro')?.value ;
     producto.suplier = this.formProducto.get('proveedor')?.value ;

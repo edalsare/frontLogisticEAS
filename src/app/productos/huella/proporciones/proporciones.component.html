@@ -1,34 +1,38 @@
  
-      <div class="row gx-5">
+      <form [formGroup]="formProporcion" class="row gx-5">
         <h3>Unidades de empaque</h3>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="ean" formControlName="ean">
-            <label for="ean">Alto (cm)</label>
+            <input type="number" class="form-control" id="alto" formControlName="alto">
+            <label for="alto">Alto (cm)</label>
           </div>
         </div>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="ean" formControlName="ean">
-            <label for="ean">Ancho (cm)</label>
+            <input type="number" class="form-control" id="ancho" formControlName="ancho">
+            <label for="ancho">Ancho (cm)</label>
           </div>
         </div>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="ean" formControlName="ean">
-            <label for="ean">Largo (cm)</label>
+            <input type="number" class="form-control" id="largo" formControlName="largo">
+            <label for="largo">Largo (cm)</label>
           </div>
         </div>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="ean" formControlName="ean">
-            <label for="ean">Cajas por Placha</label>
+            <input type="number" class="form-control" id="plancha" formControlName="plancha">
+            <label for="plancha">Cajas por Placha</label>
           </div>
         </div>
         <div class="col-sm">
           <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="ean" formControlName="ean">
-            <label for="ean">Planachas  por pallet</label>
+            <input type="number" class="form-control" id="pallet" formControlName="pallet">
+            <label for="pallet">Planachas  por pallet</label>
           </div>
         </div>
-    </div>
+        <div class="col-sm-12">
+          <app-alert-fail [mensaje]="mensaje" *ngIf="banFail"/>
+          <app-alert-ok [mensaje]="mensaje" *ngIf="banOk"/>
+        </div>
+      </form>

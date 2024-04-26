@@ -31,4 +31,8 @@
             <label for="pieza">Numero de piezas</label>
           </div>
         </div>
+        <div class="col-sm-12">
+          <app-alert-fail class="text" [mensaje]="mensaje" *ngIf="banFail"/>
+          <app-alert-ok [mensaje]="mensaje" *ngIf="banOk"/>
+        </div>
       </form>

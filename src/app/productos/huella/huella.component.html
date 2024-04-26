@@ -5,7 +5,7 @@
             <h1>Creacion de huellas para los productos</h1>
             
         </div>
-        <div class="collapse show row g-1" id="collapseExample">         
+        <div class="collapse row g-1" id="collapseExample">         
         <div class="row gx-5 m-3">
           <div class="col-sm-3 p-0">
             <div class=" form-floating">
@@ -18,13 +18,13 @@
           </div>
       </div>
       <div class="row gx-5 m-3">
-        <app-package [huella]="nivel"/> 
+        <app-package [huella]="nivel" (packages)="manejarPackage($event)"  /> 
       </div>
       <div class="row gx-5 m-3">
-        <app-proporciones/> 
+        <app-proporciones [huella]="nivel" (proporcion)="manejarPorporcion($event)" /> 
       </div> 
       <div class="row gx-5 m-3">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseExample">Registarar</button>
+        <button type="submit" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseExample" [disabled]="ban || ban2">Registarar</button>
       </div> 
         </div>    
         <div class="collapse show col-11" id="collapseExample"><h2>Productos sin Huella</h2></div>
