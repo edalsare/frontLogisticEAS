@@ -1,3 +1,3 @@
 export interface IHuella {
-    nompier: string;
+  name_trace: string;
 }

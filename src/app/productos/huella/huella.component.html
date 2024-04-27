@@ -1,66 +1,119 @@
-<div class="d-flex ">
-    <app-menu />
-    <form [formGroup]="formHuella" (ngSubmit)="enviar()" class="container d-flex row g-3">
-        <div class="col-12">
-            <h1>Creacion de huellas para los productos</h1>
-            
-        </div>
-        <div class="collapse row g-1" id="collapseExample">         
-        <div class="row gx-5 m-3">
-          <div class="col-sm-3 p-0">
-            <div class=" form-floating">
-              <select class="form-select" id="nivel" aria-label="Floating label select example" 
-              formControlName="nivel" (change)="onSelect()">
-                <option *ngFor="let item of huella" [value]="item">{{item}}</option>
-              </select>
-              <label for="nivel">Nivel de huella</label>
-            </div>
-          </div>
-      </div>
-      <div class="row gx-5 m-3">
-        <app-package [huella]="nivel" (packages)="manejarPackage($event)"  /> 
-      </div>
-      <div class="row gx-5 m-3">
-        <app-proporciones [huella]="nivel" (proporcion)="manejarPorporcion($event)" /> 
-      </div> 
-      <div class="row gx-5 m-3">
-        <button type="submit" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseExample" [disabled]="ban || ban2">Registarar</button>
-      </div> 
-        </div>    
-        <div class="collapse show col-11" id="collapseExample"><h2>Productos sin Huella</h2></div>
-        <div class="collapse show col-11" id="collapseExample">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">EAN</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Proveedor</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of pagedData; index as i">
-                        <th>{{i+1}}</th>
-                        <td >{{item[0]}}</td>
-                        <td >{{item[1]}}</td>
-                        <td >{{item[2]}}</td>
-                        <td>
-                            <button type="button" class="btn btn-success"
-                            style="--bs-btn-padding-y: .1rem; --bs-btn-padding-x: .1rem; --bs-btn-font-size: .90rem;"
-                            data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                            aria-expanded="true">
-                             <i class="bi bi-plus-circle"></i>
-                            </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <pagination [totalItems]="totalItems" (ngModel)="currentPage" 
-                    [maxSize]="3" class="pagination justify-content-end" 
-                    previousText="&lsaquo;" nextText="&rsaquo;"
-                    (boundaryLinks)="true" (pageChanged)="pageChanged($event)">
-                  </pagination>
-        </div>
-      </form>
+<div class="d-flex">
+  <app-menu />
+  <form
+    [formGroup]="formHuella"
+    (ngSubmit)="enviar()"
+    class="container d-flex row g-3"
+  >
+    <div class="col-12">
+      <h1>Creacion de huellas para los productos</h1>
     </div>
-
+    <div class="col-11">
+      <app-alert-ok [mensaje]="mensaje" *ngIf="banOk"/>
+    </div>
+    <div class="collapse row g-1" id="collapseExample">
+      <div class="row gx-5 m-3">
+        <div class="col-sm-3 p-0">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="nivel"
+              aria-label="Floating label select example"
+              formControlName="nivel"
+              (change)="onSelect()"
+            >
+              <option *ngFor="let item of huella" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+            <label for="nivel">Nivel de huella</label>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-5 m-3">
+        <app-package [huella]="nivel" (packages)="manejarPackage($event)" />
+      </div>
+      <div class="row gx-5 m-3">
+        <app-proporciones
+          [huella]="nivel"
+          (proporcion)="manejarPorporcion($event)"
+        />
+      </div>
+      <div class="row m-3">
+        <div class="col-sm-6">
+          <button
+            type="submit"
+            class="btn btn-outline-secondary w-100"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            [disabled]="ban || ban2"
+          >
+            Registarar
+          </button>
+        </div>
+        <div class="col-sm-6">
+          <button
+            type="button"
+            class="btn btn-outline-secondary w-100"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            (click)="limpiarCampos()"
+          >
+            Regresar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="collapse show col-11" id="collapseExample">
+      <h2>Productos sin Huella</h2>
+    </div>
+    <div class="collapse show col-11" id="collapseExample">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">EAN</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Proveedor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pagedData; index as i">
+            <th>{{ i + 1 }}</th>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-success"
+                style="
+                  --bs-btn-padding-y: 0.1rem;
+                  --bs-btn-padding-x: 0.1rem;
+                  --bs-btn-font-size: 0.9rem;
+                "
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="true"
+                (click)="obtenerDatos(i)"
+              >
+                <i class="bi bi-plus-circle"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination
+        [totalItems]="totalItems"
+        (ngModel)="(currentPage)"
+        [maxSize]="3"
+        class="pagination justify-content-end"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        (boundaryLinks)="(true)"
+        (pageChanged)="pageChanged($event)"
+      >
+      </pagination>
+    </div>
+  </form>
+</div>

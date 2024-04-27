@@ -71,10 +71,14 @@ export class ProporcionesComponent implements OnInit, OnChanges{
       this.formProporcion.get('pallet')?.setValue(1);
       this.formProporcion.get('pallet')?.disable();
     }else{ 
+      
       this.formProporcion.get('pallet')?.setValidators([Validators.min(2), Validators.required]);
       this.formProporcion.get('plancha')?.setValidators([Validators.min(2), Validators.required]);
       this.formProporcion.reset();
       this.formProporcion.enable();
+      if(this.huella == ''){
+        this.formProporcion.disable();
+      }
     }
   }
   ngOnInit(): void {

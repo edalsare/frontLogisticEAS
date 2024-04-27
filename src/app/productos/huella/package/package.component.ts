@@ -124,6 +124,9 @@ export class PackageComponent implements OnChanges, OnInit {
       this.formPackage.get('caja')?.setValidators([Validators.min(2), Validators.required]);
       this.formPackage.get('pallet')?.setValidators([Validators.min(2), Validators.required]);
       this.formPackage.get('pieza')?.setValidators([Validators.min(2), Validators.required]);
+    }else{
+      this.formPackage.reset();
+      this.formPackage.disable();
     }
   }
 }
