@@ -22,4 +22,8 @@ export class ProductoService {
   public getProductExist(idProduct: number): Observable<Boolean>{
     return this._HTTPClient.get<Boolean>(`${this.BASE_URL}readExist?idProduct=${idProduct}`);
   }
+
+  public getProductoByID(idProuct: number): Observable<IProducto>{
+    return this._HTTPClient.get<IProducto>(`${this.BASE_URL}readById?idproducts=${idProuct}`);
+  }
 }

@@ -1,0 +1,103 @@
+<div class="d-flex">
+  <app-menu />
+  <form [formGroup]="formFactura" class="container d-flex row g-3">
+    <div class="col-12">
+      <h1>Ingreso nueva factura</h1>
+    </div>
+    <div class="row gx-5">
+      <div class="col-sm">
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="numerof"
+            formControlName="numerof"
+          />
+          <label for="numerof">Numero factura</label>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="agencia"
+            formControlName="agencia"
+          />
+          <label for="agencia">Agencia</label>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-5 align-items-center">
+      <div class="col-sm-3">
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="ean"
+            formControlName="ean"
+            (keydown.enter)="onEnter()"
+          />
+          <label for="ean">EAN</label>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="detalle"
+            formControlName="detalle"
+          />
+          <label for="detalle">Detalles</label>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="mb-2">
+          <button
+            type="button"
+            class="btn btn-outline-dark form-control"
+            (click)="OnTabla()"
+            [disabled]="banBtn"
+          >
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <!-- <app-alert-fail [mensaje]="mensaje" *ngIf="banFail"/> -->
+    </div>
+    <div class="col-11">
+      <table class="table table-hover border-secondary">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">EAN</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ product.idproduct }}</td>
+            <td>{{ product.nameproduct }}</td>
+            <td>{{ product.descriptionpro }}</td>
+            <td><input type="number" /></td>
+            <td>
+              <a type="button"
+                ><i
+                  class="fa-regular fa-trash-can fa-xl"
+                  style="color: #141313"
+                  (click)="deleteProduct(i)"
+                ></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>

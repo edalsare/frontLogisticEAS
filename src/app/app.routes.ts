@@ -5,6 +5,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { IncatMuelleComponent } from './incat-muelle/incat-muelle.component';
 import { ProductoComponent } from './productos/producto/producto.component';
 import { HuellaComponent } from './productos/huella/huella.component';
+import { FacturaComponent } from './cantidades/factura/factura.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'usuario',component: UsuarioComponent},
     { path: 'ICatMuelle',component: IncatMuelleComponent},
     { path: 'producto',component: ProductoComponent},
-    { path: 'huella',component: HuellaComponent}
+    { path: 'huella',component: HuellaComponent},
+    { path: 'factura', component: FacturaComponent}
 ];
