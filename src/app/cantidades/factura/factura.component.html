@@ -1,6 +1,6 @@
 <div class="d-flex">
   <app-menu />
-  <form [formGroup]="formFactura" class="container d-flex row g-3">
+  <form [formGroup]="formFactura"  class="container d-flex row g-3">
     <div class="col-12">
       <h1>Ingreso nueva factura</h1>
     </div>
@@ -8,7 +8,7 @@
       <div class="col-sm">
         <div class="form-floating mb-3">
           <input
-            type="number"
+            type="text"
             class="form-control"
             id="numerof"
             formControlName="numerof"
@@ -32,7 +32,7 @@
       <div class="col-sm-3">
         <div class="form-floating mb-2">
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="ean"
             formControlName="ean"
@@ -41,10 +41,10 @@
           <label for="ean">EAN</label>
         </div>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-5">
         <div class="form-floating mb-2">
           <input
-            type="text"
+            type="textarea"
             class="form-control"
             id="detalle"
             formControlName="detalle"
@@ -52,7 +52,18 @@
           <label for="detalle">Detalles</label>
         </div>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm">
+        <div class="form-floating mb-2">
+          <input
+            type="number"
+            class="form-control"
+            id="cantidad"
+            formControlName="cantidad"
+          />
+          <label for="cantidad">Cantidad</label>
+        </div>
+      </div>
+      <div class="col-sm">
         <div class="mb-2">
           <button
             type="button"
@@ -65,8 +76,19 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <!-- <app-alert-fail [mensaje]="mensaje" *ngIf="banFail"/> -->
+    <div class="col-11 ">
+      <button type="button" class="btn btn-outline-success mx-2" (click)="enviar()" [disabled]="(formFactura.invalid || banFac)">Registrar</button>
+      <button type="button" class="btn btn-outline-secondary mx-2" (click)="limpiarFormulario()">Cancelar</button>
+    </div>
+    <div class="container row align-items-center">
+      <div class="col-sm-6">
+        <app-alert-fail [mensaje]="mensaje" *ngIf="banFail" />
+      </div>
+    </div>
+    <div class="container row align-items-center">
+      <div class="col-sm-6">
+        <app-alert-ok [mensaje]="mensaje" *ngIf="banOk" />
+      </div>
     </div>
     <div class="col-11">
       <table class="table table-hover border-secondary">
@@ -82,16 +104,28 @@
         <tbody>
           <tr *ngFor="let product of products; index as i">
             <td>{{ i + 1 }}</td>
-            <td>{{ product.idproduct }}</td>
-            <td>{{ product.nameproduct }}</td>
-            <td>{{ product.descriptionpro }}</td>
-            <td><input type="number" /></td>
+            <td>{{ product[0].idproduct }}</td>
+            <td>{{ product[0].nameproduct }}</td>
+            <td>{{ product[0].descriptionpro }}</td>
+            <td>{{ product[1].cantin }}</td>
             <td>
               <a type="button"
                 ><i
                   class="fa-regular fa-trash-can fa-xl"
-                  style="color: #141313"
+                  style="color: #f36060"
                   (click)="deleteProduct(i)"
+                ></i
+              ></a>
+            </td>
+            <td>
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#modalCantidad"
+                ><i
+                  class="fa-solid fa-square-pen fa-xl"
+                  style="color: #65f46f"
+                  (click)="envioIndex(i)"
                 ></i
               ></a>
             </td>
@@ -100,4 +134,54 @@
       </table>
     </div>
   </form>
+</div>
+<!-- MOdal -->
+<div
+  class="modal fade"
+  id="modalCantidad"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Modificar Cantidad
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="number"
+          class="form-control form-control-lg dark"
+          id="modCantidad"
+          placeholder="Nueva cantidad"
+          [(ngModel)]="cantidad"
+        />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          data-bs-dismiss="modal"
+          (click)="nuevaCantidad()"
+        >
+          Modificar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

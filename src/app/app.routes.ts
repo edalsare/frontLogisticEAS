@@ -8,11 +8,11 @@ import { HuellaComponent } from './productos/huella/huella.component';
 import { FacturaComponent } from './cantidades/factura/factura.component';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent},
-    { path: 'menu',component: MenuComponent},
-    { path: 'usuario',component: UsuarioComponent},
-    { path: 'ICatMuelle',component: IncatMuelleComponent},
-    { path: 'producto',component: ProductoComponent},
-    { path: 'huella',component: HuellaComponent},
-    { path: 'factura', component: FacturaComponent}
+  { path: '', component: LoginComponent },
+  { path: 'menu', component: MenuComponent },
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'ICatMuelle', component: IncatMuelleComponent },
+  { path: 'producto', component: ProductoComponent },
+  { path: 'huella', component: HuellaComponent },
+  { path: 'factura', component: FacturaComponent}
 ];
