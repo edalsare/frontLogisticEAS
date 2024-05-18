@@ -1,0 +1,93 @@
+<div class="d-flex">
+  <app-menu />
+  <form [formGroup]="formIngreso" class="container d-flex row g-3">
+    <div class="col-12">
+      <h1>Ingreso cantidades a factura</h1>
+    </div>
+    <div class="row gx-5">
+      <div class="col-sm-3">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select form-control"
+            id="agencya"
+            aria-label="Floating label select example"
+            formControlName="agencya"
+            (change)="onFactura()"
+            >
+            <option  *ngFor="let agencia of agencia" [value]="agencia">{{ agencia }}</option>
+          </select>
+          <label for="floatingSelect">Agencia</label>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-floating mb-3">
+          <select
+            class="form-select"
+            id="numbill"
+            aria-label="Floating label select example"
+            formControlName="numbill"
+            (change)="onProducto()"
+          >
+            <option *ngFor="let num of numFac" [value]="num">{{num}}</option>
+          </select>
+          <label for="floatingSelect">Numero de factura</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-11">
+      <button type="button" class="btn btn-outline-success mx-2">
+        Registrar
+      </button>
+      <button type="button" class="btn btn-outline-secondary mx-2">
+        Cancelar
+      </button>
+    </div>
+    <div class="col-11">
+      <table class="table table-hover border-secondary">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">EAN</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cantidad of cantidadIn; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ cantidad.product2.idproduct }}</td>
+            <td>{{ cantidad.product2.nameproduct }}</td>
+            <td>{{ cantidad.product2.category.namecat }}</td>
+            <td >{{ cantidades[i].cantidadf }}</td>
+            <td>
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#modalCantidad"
+                (click)="ingresarCantidades(i)"
+                ><i
+                  class="fa-solid fa-square-pen fa-xl"
+                  style="color: #65f46f"
+                ></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+<!-- MOdal -->
+<div
+  class="modal fade"
+  id="modalCantidad"
+  data-bs-backdrop="static"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+ >
+  <div class="modal-dialog modal-dialog-centered">
+    <app-cantidad-in (EnviarCantidades)="recibirCantidades($event)" [recibirCantidades]="cantidadesout" />
+  </div>
+</div>

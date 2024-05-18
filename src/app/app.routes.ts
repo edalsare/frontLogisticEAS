@@ -6,6 +6,7 @@ import { IncatMuelleComponent } from './incat-muelle/incat-muelle.component';
 import { ProductoComponent } from './productos/producto/producto.component';
 import { HuellaComponent } from './productos/huella/huella.component';
 import { FacturaComponent } from './cantidades/factura/factura.component';
+import { IngresoComponent } from './cantidades/ingreso/ingreso.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'ICatMuelle', component: IncatMuelleComponent },
   { path: 'producto', component: ProductoComponent },
   { path: 'huella', component: HuellaComponent },
-  { path: 'factura', component: FacturaComponent}
+  { path: 'factura', component: FacturaComponent},
+  { path: 'ingreso', component: IngresoComponent}
 ];

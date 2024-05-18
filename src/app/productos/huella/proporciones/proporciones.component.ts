@@ -55,7 +55,7 @@ export class ProporcionesComponent implements OnInit, OnChanges{
           this.banOk = false;          
           this.proporcions = {} as IProporcion;
           this.proporcion.emit(this.proporcions);
-          this.mensaje = 'Todos los campos deben estart completos, asegurate de diligenciar de acuerdo al tipo de huella a registrar'
+          this.mensaje = 'Todos los campos deben estar completos, asegurate de diligenciar de acuerdo al tipo de huella a registrar'
           this.banFail = true;
         }
         

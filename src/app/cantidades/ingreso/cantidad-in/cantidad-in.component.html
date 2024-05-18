@@ -1,0 +1,61 @@
+<div [formGroup]="formCantidadIn" class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Cantidad</h1>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body d-flex border border-dark-subtle">
+    <div class="mb-3 ms-2">
+      <label for="unidades">Unidades</label>
+      <input
+        type="number"
+        class="form-control form-control-sm dark border-dark-subtle"
+        id="unidades"
+        placeholder="Cantidad"
+        formControlName="unidades"
+      />
+    </div>
+    <div class="mb-3 ms-2">
+      <label for="cajas">Cajas</label>
+      <input
+        type="number"
+        class="form-control form-control-sm dark border-dark-subtle"
+        id="cajas"
+        placeholder="Cantidad"
+        formControlName="cajas"
+      />
+    </div>
+    <div class="mb-3 ms-2">
+      <label for="pallets">Pallets</label>
+      <input
+        type="number"
+        class="form-control form-control-sm dark border-dark-subtle"
+        id="pallets"
+        placeholder="Cantidad"
+        formControlName="pallets"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      data-bs-dismiss="modal"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      data-bs-dismiss="modal"
+      (click)="enviar()"
+      [disabled]="formCantidadIn.invalid"
+    >
+      Modificar
+    </button>
+  </div>
+</div>

@@ -163,6 +163,7 @@ export class FacturaComponent {
             this.banFail = false;
             this.factura.numbill = this.formFactura.get('numerof')?.value;
             this.factura.lagency = this.formFactura.get('agencia')?.value;
+            this.factura.actives = true;
             this._serviceFactura
               .postFactura(this.products, this.factura, this.usuario)
               .subscribe({

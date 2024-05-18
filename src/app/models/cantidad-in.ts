@@ -7,3 +7,11 @@ export interface ICantidadIn {
     bill: IFactura;
     product2: IProducto;
 }
+
+export interface Icantidades{
+    Icantidad: ICantidadIn;
+    unidades: number;
+    cajas: number;
+    pallets: number;
+    cantidadf: number;
+}

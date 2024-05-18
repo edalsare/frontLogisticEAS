@@ -21,4 +21,16 @@ export class FacturaService {
   public existsByNumbill(numbill: string): Observable<Boolean>{
     return this._HTTPClient.get<Boolean>(`${this.BASE_URL}existsByNumbill?numbill=${numbill}`)
   }
+
+  public readAllBill():Observable<string[]>{
+    return this._HTTPClient.get<string[]>(`${this.BASE_URL}agencia`);
+  }
+
+  public readAgencia(lagency: string): Observable<string[]>{
+    return this._HTTPClient.get<string[]>(`${this.BASE_URL}readByAgency?lagency=${lagency}`);
+  }
+
+  public readByAgencia(numbill: string): Observable<IFactura>{
+    return this._HTTPClient.get<IFactura>((`${this.BASE_URL}readByNumbill?numbill=${numbill}`));
+  }
 }
